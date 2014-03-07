@@ -99,7 +99,7 @@ class nginx::config(
     ensure => directory,
   }
 
-  if $confd_purge == true {
+  if $vhost_purge == true {
     File["${nginx::params::nx_conf_dir}/sites-available"] {
       purge   => true,
       recurse => true,
@@ -110,7 +110,7 @@ class nginx::config(
     ensure => directory,
   }
 
-  if $confd_purge == true {
+  if $vhost_purge == true {
     File["${nginx::params::nx_conf_dir}/sites-enabled"] {
       purge   => true,
       recurse => true,
