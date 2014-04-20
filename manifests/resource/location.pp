@@ -283,7 +283,6 @@ define nginx::resource::location (
   if ($ssl_only != true) {
     
     $tmpFile=md5("${vhost_sanitized}-${priority}-${location_sanitized}")
-    notify {"${vhost_sanitized}-${priority}-${location_sanitized}": }
     concat::fragment { "${tmpFile}":
       ensure  => present,
       target  => $config_file,
