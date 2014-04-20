@@ -245,6 +245,9 @@ define nginx::resource::location (
   $location_sanitized_tmp = regsubst($location, '\/', '_', 'G')
   $location_sanitized = regsubst($location_sanitized_tmp, '\\', '_', 'G')
 
+  $name_sanitized_tmp = regsubst($name, '\/', '_', 'G')
+  $name_sanitized = regsubst($name_sanitized_tmp, '\\', '_', 'G')
+
   ## Check for various error conditions
   if ($vhost == undef) {
     fail('Cannot create a location reference without attaching to a virtual host')
@@ -282,7 +285,7 @@ define nginx::resource::location (
   ## Create stubs for vHost File Fragment Pattern
   if ($ssl_only != true) {
     
-    $tmpFile=md5("${vhost_sanitized}-${priority}-${location_sanitized}")
+    $tmpFile=md5("${vhost_sanitized}-${priority}-${name_sanitized)-${location_sanitized}")
     concat::fragment { "${tmpFile}":
       ensure  => present,
       target  => $config_file,
