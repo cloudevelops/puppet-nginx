@@ -285,7 +285,7 @@ define nginx::resource::location (
   ## Create stubs for vHost File Fragment Pattern
   if ($ssl_only != true) {
     
-    $tmpFile=md5("${vhost_sanitized}-${priority}-${name_sanitized}-${location_sanitized}")
+    $tmpFile=md5("${vhost_sanitized}-${priority}-${location_sanitized}")
     concat::fragment { "${tmpFile}":
       ensure  => present,
       target  => $config_file,
